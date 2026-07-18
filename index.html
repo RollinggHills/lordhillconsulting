@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lord Hill Consulting — See the Unrealized Potential</title>
+<meta name="description" content="Creative business consulting with flat-rate pricing. Brand, strategy, and systems for businesses ready to scale.">
+<style>
+  :root {
+    --ink: #12100e;
+    --ink-soft: #1d1a17;
+    --paper: #f6f2ea;
+    --paper-dim: #ece6da;
+    --gold: #c9a24b;
+    --gold-bright: #e0be6a;
+    --muted: #8a8378;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(18, 16, 14, 0.97);
+    border-bottom: 1px solid rgba(201, 162, 75, 0.18);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; max-width: 1100px; margin: 0 auto;
+  }
+  .monogram {
+    font-family: var(--serif);
+    font-size: 1.35rem; letter-spacing: 0.06em;
+    color: var(--paper); text-decoration: none;
+  }
+  .monogram span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.85rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-bright); }
+  .btn {
+    display: inline-block;
+    background: var(--gold); color: var(--ink);
+    padding: 12px 28px; border-radius: 2px;
+    text-decoration: none; font-weight: 600; font-size: 0.85rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border: 1px solid var(--gold);
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn:hover { background: transparent; color: var(--gold-bright); }
+  .btn-ghost {
+    background: transparent; color: var(--paper);
+    border: 1px solid rgba(246, 242, 234, 0.3);
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-bright); }
+  .nav-links .btn { padding: 9px 20px; }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    padding: 110px 0 90px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 75% 20%, rgba(201, 162, 75, 0.12), transparent),
+      radial-gradient(ellipse 40% 40% at 15% 90%, rgba(201, 162, 75, 0.06), transparent);
+    pointer-events: none;
+  }
+  .kicker {
+    color: var(--gold); font-size: 0.8rem; letter-spacing: 0.28em;
+    text-transform: uppercase; margin-bottom: 24px; font-weight: 600;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 6.5vw, 4.6rem);
+    line-height: 1.08; font-weight: 400;
+    max-width: 15ch;
+  }
+  h1 em { font-style: italic; color: var(--gold-bright); }
+  .hero p.lede {
+    margin: 28px 0 40px; max-width: 54ch;
+    color: #c9c2b6; font-size: 1.15rem;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .flat-note {
+    margin-top: 48px; display: inline-flex; align-items: center; gap: 12px;
+    color: var(--muted); font-size: 0.9rem;
+  }
+  .flat-note::before {
+    content: ''; width: 40px; height: 1px; background: var(--gold);
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding: 90px 0; }
+  .section-label {
+    color: var(--gold); font-size: 0.75rem; letter-spacing: 0.28em;
+    text-transform: uppercase; font-weight: 600; margin-bottom: 16px;
+  }
+  h2 {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.15;
+    margin-bottom: 24px; max-width: 22ch;
+  }
+  .section-intro { color: #c9c2b6; max-width: 60ch; margin-bottom: 48px; }
+
+  /* ---------- Approach ---------- */
+  #approach { border-top: 1px solid rgba(201, 162, 75, 0.15); }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .pillar {
+    background: var(--ink-soft);
+    border: 1px solid rgba(201, 162, 75, 0.14);
+    padding: 36px 28px; border-radius: 3px;
+  }
+  .pillar .num {
+    font-family: var(--serif); color: var(--gold); font-size: 1rem;
+    letter-spacing: 0.1em; margin-bottom: 18px;
+  }
+  .pillar h3 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; margin-bottom: 12px; }
+  .pillar p { color: var(--muted); font-size: 0.95rem; }
+
+  /* ---------- Packages ---------- */
+  #packages { background: var(--paper); color: var(--ink); }
+  #packages .section-label { color: #a07c2e; }
+  #packages .section-intro { color: #5e574b; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+  .card {
+    background: #fff; border: 1px solid #ded6c6; border-radius: 4px;
+    padding: 40px 32px; display: flex; flex-direction: column;
+    position: relative;
+  }
+  .card.featured { border: 2px solid var(--gold); box-shadow: 0 12px 40px rgba(18,16,14,0.10); }
+  .card .tag {
+    position: absolute; top: -13px; left: 32px;
+    background: var(--gold); color: var(--ink);
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 2px;
+  }
+  .card h3 { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; }
+  .card .price {
+    font-family: var(--serif); font-size: 2.4rem; margin: 18px 0 4px; color: var(--ink);
+  }
+  .card .price small { font-size: 0.85rem; font-family: var(--sans); color: #8a8378; letter-spacing: 0.05em; }
+  .card .desc { color: #5e574b; font-size: 0.95rem; margin: 14px 0 22px; }
+  .card ul { list-style: none; margin-bottom: 28px; flex-grow: 1; }
+  .card li {
+    padding: 8px 0 8px 26px; position: relative;
+    color: #3d382f; font-size: 0.92rem;
+    border-bottom: 1px solid #f0ebe0;
+  }
+  .card li::before {
+    content: '◆'; position: absolute; left: 2px; color: var(--gold); font-size: 0.6rem; top: 13px;
+  }
+  .card .btn { text-align: center; }
+  .pricing-note { margin-top: 32px; color: #8a8378; font-size: 0.85rem; text-align: center; }
+
+  /* ---------- Portfolio ---------- */
+  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .work {
+    border: 1px solid rgba(201, 162, 75, 0.16);
+    border-radius: 3px; padding: 32px 28px;
+    background: linear-gradient(160deg, var(--ink-soft), rgba(29,26,23,0.4));
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .work:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .work .field {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px; font-weight: 600;
+  }
+  .work h3 { font-family: var(--serif); font-weight: 400; font-size: 1.4rem; margin-bottom: 10px; }
+  .work p { color: var(--muted); font-size: 0.93rem; }
+
+  /* ---------- Process ---------- */
+  #process { border-top: 1px solid rgba(201, 162, 75, 0.15); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; counter-reset: step; }
+  .step { position: relative; padding-top: 20px; }
+  .step::before {
+    counter-increment: step; content: counter(step, decimal-leading-zero);
+    font-family: var(--serif); font-size: 3.4rem; color: rgba(201, 162, 75, 0.28);
+    position: absolute; top: -18px; left: 0; line-height: 1;
+  }
+  .step h3 { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; margin-bottom: 10px; position: relative; }
+  .step p { color: var(--muted); font-size: 0.95rem; position: relative; }
+
+  /* ---------- Intake ---------- */
+  #contact { background: var(--ink-soft); border-top: 1px solid rgba(201, 162, 75, 0.15); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+  form { display: grid; gap: 18px; }
+  label { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  input, select, textarea {
+    width: 100%; margin-top: 8px;
+    background: var(--ink); color: var(--paper);
+    border: 1px solid rgba(201, 162, 75, 0.25); border-radius: 3px;
+    padding: 13px 14px; font-size: 0.95rem; font-family: var(--sans);
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); }
+  textarea { min-height: 120px; resize: vertical; }
+  form .btn { border: none; cursor: pointer; font-family: var(--sans); }
+  .contact-side p { color: #c9c2b6; margin-bottom: 24px; }
+  .contact-side .direct { color: var(--muted); font-size: 0.9rem; }
+  .contact-side .direct a { color: var(--gold-bright); text-decoration: none; }
+
+  footer {
+    padding: 36px 0; text-align: center;
+    color: var(--muted); font-size: 0.82rem;
+    border-top: 1px solid rgba(201, 162, 75, 0.12);
+  }
+
+  @media (max-width: 860px) {
+    .pillars, .cards, .work-grid, .steps, .contact-grid { grid-template-columns: 1fr; }
+    .nav-links a:not(.btn) { display: none; }
+    header.hero { padding: 70px 0 60px; }
+    section { padding: 64px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="monogram" href="#top">LORD <span>HILL</span></a>
+    <div class="nav-links">
+      <a href="#approach">Approach</a>
+      <a href="#packages">Rates</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a class="btn" href="#contact">Start a Project</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="kicker">Lord Hill Consulting</div>
+    <h1>See the potential your business <em>can't see yet.</em></h1>
+    <p class="lede">
+      Creative business consulting for owners ready to scale. I find the untapped and
+      unrealized value already sitting inside your brand — then build the strategy,
+      identity, and systems to unlock it.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn" href="#contact">Book a Vision Session</a>
+      <a class="btn btn-ghost" href="#packages">See Flat Rates</a>
+    </div>
+    <div class="flat-note">Flat-rate pricing. No hourly meters. You pay for the outcome.</div>
+  </div>
+</header>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="section-label">The Approach</div>
+    <h2>Most businesses aren't short on effort. They're short on vision.</h2>
+    <p class="section-intro">
+      I'm a builder, not a lecturer. I've launched brands from nothing — streetwear,
+      real estate, digital products — and the pattern is always the same: the growth
+      you're chasing is usually hiding in plain sight. My job is to spot it, name it,
+      and build the path to it.
+    </p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="num">I.</div>
+        <h3>Creative Eye</h3>
+        <p>Your brand, presence, and story — audited by someone who builds brands for a living. I show you how customers actually see you, and how they could.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">II.</div>
+        <h3>Untapped Value</h3>
+        <p>Every business is sitting on assets it isn't using — an audience, a product angle, a location, a story. I find the leverage you already own.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">III.</div>
+        <h3>Real Systems</h3>
+        <p>Vision without execution is decoration. Every engagement ends with concrete next steps — and if you need it built, I build it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="packages">
+  <div class="wrap">
+    <div class="section-label">Flat Rates</div>
+    <h2>One price. One outcome. No clock running.</h2>
+    <p class="section-intro">
+      Hourly billing rewards slow work. Flat rates reward results. Pick the level of
+      involvement you need — every package ends with something you can act on immediately.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <h3>The Vision Session</h3>
+        <div class="price">$200 <small>flat</small></div>
+        <p class="desc">A 90-minute deep dive into your business with fresh eyes.</p>
+        <ul>
+          <li>90-minute working session (in person or video)</li>
+          <li>Brand &amp; presence walkthrough</li>
+          <li>Top 3 untapped opportunities, identified</li>
+          <li>Written action brief within 48 hours</li>
+        </ul>
+        <a class="btn" href="#contact">Book It</a>
+      </div>
+      <div class="card featured">
+        <div class="tag">Most Popular</div>
+        <h3>The Blueprint</h3>
+        <div class="price">$350 <small>flat</small></div>
+        <p class="desc">A full audit and a 30-day plan to scale what's working.</p>
+        <ul>
+          <li>Everything in the Vision Session</li>
+          <li>Full audit: brand, digital presence, offer, pricing</li>
+          <li>30-day scale roadmap, step by step</li>
+          <li>Two follow-up check-ins to keep you moving</li>
+        </ul>
+        <a class="btn" href="#contact">Get the Blueprint</a>
+      </div>
+      <div class="card">
+        <h3>The Build</h3>
+        <div class="price">$500 <small>flat</small></div>
+        <p class="desc">Hands-on. I don't just plan the growth — I build it with you.</p>
+        <ul>
+          <li>Everything in the Blueprint</li>
+          <li>Brand identity or refresh, designed</li>
+          <li>Website or digital presence, built</li>
+          <li>Launch support for 30 days after delivery</li>
+        </ul>
+        <a class="btn" href="#contact">Start the Build</a>
+      </div>
+    </div>
+    <p class="pricing-note">A $100 deposit books your start date — the balance is due on delivery. Founding-client rates while the portfolio grows.</p>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-label">Built by Hand</div>
+    <h2>I practice what I pitch.</h2>
+    <p class="section-intro">
+      Every brand below was conceived, designed, and built by me — from the idea to the
+      identity to the working product. This is the same eye I bring to your business.
+    </p>
+    <div class="work-grid">
+      <div class="work">
+        <div class="field">Streetwear · E-Commerce</div>
+        <h3>OFF EARTH</h3>
+        <p>A streetwear brand and social shopping app — full e-commerce build, brand identity, and community features, launch-ready.</p>
+      </div>
+      <div class="work">
+        <div class="field">Real Estate · Texas</div>
+        <h3>21AndDone</h3>
+        <p>A wholesale real estate brand built on a stress-free promise — website, business plan, and seller pipeline designed end to end.</p>
+      </div>
+      <div class="work">
+        <div class="field">Mobile · App Store</div>
+        <h3>Whack-A-Mole</h3>
+        <p>A mobile game taken from concept to App Store product — design, development, and store launch pipeline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-label">How It Works</div>
+    <h2>Three steps. No runaround.</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>Tell me where you are</h3>
+        <p>Fill out the short intake below — what you do, what's stuck, and where you want to be. Takes five minutes.</p>
+      </div>
+      <div class="step">
+        <h3>We talk, flat rate agreed</h3>
+        <p>A quick call to confirm fit. You'll know your exact price before we start — it never changes mid-project.</p>
+      </div>
+      <div class="step">
+        <h3>You get the outcome</h3>
+        <p>A brief, a blueprint, or a full build — delivered on the date we agree, with follow-through until it sticks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-side">
+        <div class="section-label">Start a Project</div>
+        <h2>Let's find what you're sitting on.</h2>
+        <p>
+          Tell me about your business and I'll come back within one business day with
+          honest first impressions and a recommended starting point.
+        </p>
+        <p class="direct">
+          Prefer email? Reach me directly at
+          <a href="mailto:matthewhilljr56@gmail.com">matthewhilljr56@gmail.com</a>
+        </p>
+      </div>
+      <form id="intake-form">
+        <div>
+          <label for="name">Your Name</label>
+          <input id="name" name="name" type="text" required>
+        </div>
+        <div>
+          <label for="business">Business Name</label>
+          <input id="business" name="business" type="text">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required>
+        </div>
+        <div>
+          <label for="package">Interested In</label>
+          <select id="package" name="package">
+            <option>The Vision Session — $200</option>
+            <option>The Blueprint — $350</option>
+            <option>The Build — $500</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div>
+          <label for="about">What's the business, and what feels stuck?</label>
+          <textarea id="about" name="about" required></textarea>
+        </div>
+        <button class="btn" type="submit" id="submit-btn">Send It</button>
+        <p id="form-status" role="status" style="display:none; font-size:0.9rem; margin-top:4px;"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Lord Hill Consulting · A division of OFF EARTH LLC · Texas
+  </div>
+</footer>
+
+<script>
+  // Form delivery: set your Formspree form ID below (free account at formspree.io,
+  // e.g. 'xkgwqvyz' from https://formspree.io/f/xkgwqvyz). Until then, submissions
+  // fall back to opening a pre-filled email to you.
+  var FORMSPREE_ID = '';
+  var CONTACT_EMAIL = 'matthewhilljr56@gmail.com';
+
+  document.getElementById('intake-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var form = e.target;
+    var status = document.getElementById('form-status');
+    var btn = document.getElementById('submit-btn');
+    var el = form.elements;
+    var data = {
+      name: el['name'].value,
+      business: el['business'].value,
+      email: el['email'].value,
+      package: el['package'].value,
+      about: el['about'].value
+    };
+
+    function show(msg, ok) {
+      status.style.display = 'block';
+      status.style.color = ok ? '#e0be6a' : '#e07a6a';
+      status.textContent = msg;
+    }
+
+    if (FORMSPREE_ID) {
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (res) {
+        if (res.ok) {
+          form.reset();
+          show("Sent. You'll hear from me within one business day.", true);
+        } else {
+          throw new Error('Formspree error');
+        }
+      }).catch(function () {
+        show('Something went wrong — email me directly at ' + CONTACT_EMAIL, false);
+      }).finally(function () {
+        btn.disabled = false;
+        btn.textContent = 'Send It';
+      });
+    } else {
+      var body = 'Name: ' + data.name + '\n' +
+                 'Business: ' + data.business + '\n' +
+                 'Email: ' + data.email + '\n' +
+                 'Interested in: ' + data.package + '\n\n' +
+                 data.about;
+      window.location.href = 'mailto:' + CONTACT_EMAIL +
+        '?subject=' + encodeURIComponent('Consulting inquiry — ' + (data.business || data.name)) +
+        '&body=' + encodeURIComponent(body);
+      show('Opening your email app — hit send and I’ll take it from there.', true);
+    }
+  });
+</script>
+
+</body>
+</html>
