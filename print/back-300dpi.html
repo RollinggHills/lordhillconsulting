@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>back bleed 300dpi</title>
+<style>
+  /* 3.75in x 2.25in at 300dpi = 1125 x 675 px (0.125in bleed each side; trim = 3.5x2) */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1125px; height: 675px; overflow: hidden; }
+  body {
+    background: #f6f2ea; color: #12100e;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    display: flex;
+  }
+  .left {
+    flex: 1;
+    padding: 104px 0 104px 122px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .person { font-family: Georgia, 'Times New Roman', serif; font-size: 52px; letter-spacing: 0.03em; }
+  .title { font-size: 25px; letter-spacing: 0.26em; text-transform: uppercase; color: #a07c2e; margin: 17px 0 42px; font-weight: 700; }
+  .contact { font-size: 31px; color: #3d382f; line-height: 1.9; }
+  .contact strong { letter-spacing: 0.04em; }
+  .tagline { margin-top: 42px; font-family: Georgia, serif; font-style: italic; font-size: 31px; color: #8a8378; }
+  .right {
+    width: 322px; background: #12100e;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 21px;
+    padding-right: 37px;
+  }
+  .mono { font-family: Georgia, 'Times New Roman', serif; font-size: 67px; color: #e0be6a; letter-spacing: 0.05em; }
+  .flat { font-size: 21px; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8378; text-align: center; line-height: 1.8; }
+</style>
+</head>
+<body>
+  <div class="left">
+    <div class="person">Matthew Hill Jr.</div>
+    <div class="title">Founder · Creative Consultant</div>
+    <div class="contact">
+      <strong>matthewhilljr56@gmail.com</strong><br>
+      lordhillconsulting.com
+    </div>
+    <div class="tagline">See the potential your business can't see yet.</div>
+  </div>
+  <div class="right">
+    <div class="mono">LH</div>
+    <div class="flat">Flat Rates ·<br>Real Outcomes</div>
+  </div>
+</body>
+</html>
