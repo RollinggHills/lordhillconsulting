@@ -450,6 +450,17 @@
   // fall back to opening a pre-filled email to you.
   var FORMSPREE_ID = '';
   var CONTACT_EMAIL = 'matthewhilljr56@gmail.com';
+  // Set your Calendly event link (e.g. 'https://calendly.com/yourname/vision-session')
+  // and every booking button opens instant scheduling instead of the intake form.
+  var CALENDLY_URL = '';
+
+  if (CALENDLY_URL) {
+    document.querySelectorAll('.hero-ctas a.btn:not(.btn-ghost), .card .btn').forEach(function (a) {
+      a.href = CALENDLY_URL;
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+  }
 
   document.getElementById('intake-form').addEventListener('submit', function (e) {
     e.preventDefault();
