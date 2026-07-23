@@ -450,16 +450,19 @@
   // fall back to opening a pre-filled email to you.
   var FORMSPREE_ID = '';
   var CONTACT_EMAIL = 'matthewhilljr56@gmail.com';
-  // Set your Calendly event link (e.g. 'https://calendly.com/yourname/vision-session')
-  // and every booking button opens instant scheduling instead of the intake form.
-  var CALENDLY_URL = '';
+  // Set your Stripe Payment Link (e.g. 'https://buy.stripe.com/xxxx') for the
+  // $100 deposit and every booking button goes straight to checkout. Configure the
+  // payment link's after-payment redirect to https://lordhillconsulting.com/thanks.html
+  var STRIPE_LINK = '';
 
-  if (CALENDLY_URL) {
+  if (STRIPE_LINK) {
     document.querySelectorAll('.hero-ctas a.btn:not(.btn-ghost), .card .btn').forEach(function (a) {
-      a.href = CALENDLY_URL;
-      a.target = '_blank';
-      a.rel = 'noopener';
+      a.href = STRIPE_LINK;
     });
+    var note = document.querySelector('.pricing-note');
+    if (note) {
+      note.textContent = 'Booking takes your $100 deposit securely through Stripe — it applies in full toward your package, balance due on delivery.';
+    }
   }
 
   document.getElementById('intake-form').addEventListener('submit', function (e) {
