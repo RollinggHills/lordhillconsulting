@@ -132,6 +132,13 @@
   }
   .pillar h3 { font-family: var(--serif); font-weight: 400; font-size: 1.3rem; margin-bottom: 12px; }
   .pillar p { color: var(--muted); font-size: 0.95rem; }
+  .scar {
+    margin-top: 56px; padding-left: 28px;
+    border-left: 2px solid var(--gold);
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem); line-height: 1.5;
+    color: #c9c2b6; max-width: 44ch;
+  }
 
   /* ---------- Packages ---------- */
   #packages { background: var(--paper); color: var(--ink); }
@@ -265,8 +272,9 @@
     <h2>Most businesses aren't short on effort. They're short on vision.</h2>
     <p class="section-intro">
       I'm a builder, not a lecturer. I've launched brands from nothing — streetwear,
-      real estate, digital products. The growth you're chasing is usually hiding in
-      plain sight. I spot it, then build the path to it.
+      real estate, digital products — and I've made the expensive mistakes with my own
+      money, on my own brands. You get the lessons without the tuition. The growth
+      you're chasing is usually hiding in plain sight. I spot it, then build the path to it.
     </p>
     <div class="pillars">
       <div class="pillar">
@@ -285,6 +293,10 @@
         <p>Vision without execution is decoration. Every engagement ends with next steps — and if you need it built, I build it.</p>
       </div>
     </div>
+    <blockquote class="scar">
+      Everyone sells you what worked for them. I can tell you what quietly kills
+      businesses — because I've watched it up close, on my own dime.
+    </blockquote>
   </div>
 </section>
 
@@ -335,7 +347,7 @@
         <a class="btn" href="#contact">Start the Build</a>
       </div>
     </div>
-    <p class="pricing-note">Your price is set before we start and never changes. Founding-client rates while the portfolio grows.</p>
+    <p class="pricing-note">Your price is set before we start and never changes. Founding-client rates while the portfolio grows — in exchange, your win becomes a featured case study.</p>
   </div>
 </section>
 
@@ -395,8 +407,9 @@
         <div class="section-label">Start a Project</div>
         <h2>Let's find what you're sitting on.</h2>
         <p>
-          Tell me about your business. Within one business day, I'll reach out to set
-          up your free 30-minute call.
+          Bring me the problem everyone else passed on — that's the work I want.
+          Tell me about your business, and within one business day I'll reach out
+          to set up your free 30-minute call.
         </p>
         <p class="direct">
           Prefer email? Reach me directly at
@@ -468,7 +481,7 @@
     if (heroBtn && STRIPE_LINKS.vision) heroBtn.href = STRIPE_LINKS.vision;
     var note = document.querySelector('.pricing-note');
     if (note) {
-      note.textContent = 'One flat rate, paid securely through Stripe at booking. No invoices, no meters, no surprises. Founding-client rates while the portfolio grows.';
+      note.textContent = 'One flat rate, paid securely through Stripe at booking. No invoices, no meters, no surprises. Founding-client rates while the portfolio grows — in exchange, your win becomes a featured case study.';
     }
   }
 
