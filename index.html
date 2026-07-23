@@ -337,7 +337,7 @@
         <a class="btn" href="#contact">Start the Build</a>
       </div>
     </div>
-    <p class="pricing-note">A $100 deposit books your start date — the balance is due on delivery. Founding-client rates while the portfolio grows.</p>
+    <p class="pricing-note">One flat rate per package — you know your exact price before we start, and it never changes. Founding-client rates while the portfolio grows.</p>
   </div>
 </section>
 
@@ -450,18 +450,27 @@
   // fall back to opening a pre-filled email to you.
   var FORMSPREE_ID = '';
   var CONTACT_EMAIL = 'matthewhilljr56@gmail.com';
-  // Set your Stripe Payment Link (e.g. 'https://buy.stripe.com/xxxx') for the
-  // $100 deposit and every booking button goes straight to checkout. Configure the
-  // payment link's after-payment redirect to https://lordhillconsulting.com/thanks.html
-  var STRIPE_LINK = '';
+  // Stripe Payment Links (e.g. 'https://buy.stripe.com/xxxx') — one per package,
+  // each charging the full flat rate at booking. Configure every link's
+  // after-payment redirect to https://lordhillconsulting.com/thanks.html
+  var STRIPE_LINKS = {
+    vision: '',     // The Vision Session — $200
+    blueprint: '',  // The Blueprint — $350
+    build: ''       // The Build — $500
+  };
 
-  if (STRIPE_LINK) {
-    document.querySelectorAll('.hero-ctas a.btn:not(.btn-ghost), .card .btn').forEach(function (a) {
-      a.href = STRIPE_LINK;
+  if (STRIPE_LINKS.vision || STRIPE_LINKS.blueprint || STRIPE_LINKS.build) {
+    var order = ['vision', 'blueprint', 'build'];
+    document.querySelectorAll('#packages .card').forEach(function (card, i) {
+      var link = STRIPE_LINKS[order[i]];
+      var btn = card.querySelector('.btn');
+      if (link && btn) btn.href = link;
     });
+    var heroBtn = document.querySelector('.hero-ctas a.btn:not(.btn-ghost)');
+    if (heroBtn && STRIPE_LINKS.vision) heroBtn.href = STRIPE_LINKS.vision;
     var note = document.querySelector('.pricing-note');
     if (note) {
-      note.textContent = 'Booking takes your $100 deposit securely through Stripe — it applies in full toward your package, balance due on delivery.';
+      note.textContent = 'One flat rate, paid securely through Stripe at booking. No invoices, no meters, no surprises. Founding-client rates while the portfolio grows.';
     }
   }
 
