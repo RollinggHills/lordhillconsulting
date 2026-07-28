@@ -474,7 +474,12 @@
           <a href="mailto:matthewhilljr56@gmail.com">matthewhilljr56@gmail.com</a>
         </p>
       </div>
-      <form id="intake-form">
+      <form id="intake-form" action="https://formsubmit.co/info@lordhillconsulting.com" method="POST">
+        <input type="hidden" name="_subject" value="New inquiry — lordhillconsulting.com">
+        <input type="hidden" name="_next" value="https://lordhillconsulting.com/thanks.html">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
         <div>
           <label for="name">Your Name</label>
           <input id="name" name="name" type="text" required>
@@ -514,10 +519,11 @@
 </footer>
 
 <script>
-  // Form delivery: set your Formspree form ID below (free account at formspree.io,
-  // e.g. 'xkgwqvyz' from https://formspree.io/f/xkgwqvyz). Until then, submissions
-  // fall back to opening a pre-filled email to you.
-  var FORMSPREE_ID = '';
+  // Form delivery: FormSubmit (no account key needed — the address below IS the endpoint).
+  // The <form> also carries a native action/method, so submissions still deliver if this
+  // script never runs. INBOX_EMAIL must be activated once at formsubmit.co (one click in
+  // the activation email) or submissions will not be forwarded.
+  var INBOX_EMAIL = 'info@lordhillconsulting.com';
   var CONTACT_EMAIL = 'matthewhilljr56@gmail.com';
   // Stripe Payment Links (e.g. 'https://buy.stripe.com/xxxx') — one per package,
   // each charging the full flat rate at booking. Configure every link's
@@ -563,37 +569,37 @@
       status.textContent = msg;
     }
 
-    if (FORMSPREE_ID) {
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function (res) {
-        if (res.ok) {
-          form.reset();
-          show("Sent. You'll hear from me within one business day.", true);
-        } else {
-          throw new Error('Formspree error');
-        }
-      }).catch(function () {
-        show('Something went wrong — email me directly at ' + CONTACT_EMAIL, false);
-      }).finally(function () {
-        btn.disabled = false;
-        btn.textContent = 'Send It';
-      });
-    } else {
-      var body = 'Name: ' + data.name + '\n' +
-                 'Business: ' + data.business + '\n' +
-                 'Email: ' + data.email + '\n' +
-                 'Interested in: ' + data.package + '\n\n' +
-                 data.about;
-      window.location.href = 'mailto:' + CONTACT_EMAIL +
-        '?subject=' + encodeURIComponent('Consulting inquiry — ' + (data.business || data.name)) +
-        '&body=' + encodeURIComponent(body);
-      show('Opening your email app — hit send and I’ll take it from there.', true);
-    }
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    data._subject = 'New inquiry — ' + (data.business || data.name);
+    data._template = 'table';
+    data._captcha = 'false';
+
+    fetch('https://formsubmit.co/ajax/' + INBOX_EMAIL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; });
+    }).then(function (out) {
+      if (out && String(out.success) === 'true') {
+        form.reset();
+        show("Sent. You'll hear from me within one business day.", true);
+      } else {
+        throw new Error(out && out.message ? out.message : 'delivery failed');
+      }
+    }).catch(function () {
+      // Never fail silently. Give the visitor a route that always works.
+      status.style.display = 'block';
+      status.style.color = '#e07a6a';
+      status.innerHTML = "That didn't go through. Email me directly at " +
+        '<a href="mailto:' + CONTACT_EMAIL + '" style="color:#e0be6a">' + CONTACT_EMAIL + '</a>' +
+        ' and I\'ll pick it up from there.';
+    }).finally(function () {
+      btn.disabled = false;
+      btn.textContent = 'Send It';
+    });
   });
 </script>
 
