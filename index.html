@@ -201,6 +201,25 @@
   .card .btn { text-align: center; }
   .pricing-note { margin-top: 32px; color: #8a8378; font-size: 0.85rem; text-align: center; }
 
+  /* ---------- Returning clients (sits inside the light #packages section) ---------- */
+  .returning { margin-top: 58px; border-top: 1px solid #ded6c6; padding-top: 44px; }
+  .returning-head { text-align: center; margin-bottom: 28px; }
+  .returning-head h3 {
+    font-family: var(--serif); font-weight: 400; font-size: 1.85rem;
+    color: var(--ink); margin: 10px 0;
+  }
+  .returning-head p { color: #5e574b; font-size: 0.95rem; max-width: 46ch; margin: 0 auto; }
+  .returning-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .ret {
+    background: #fff; border: 1px solid #ded6c6; border-radius: 4px; padding: 26px 24px;
+  }
+  .ret-label {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #a07c2e; margin-bottom: 12px; font-weight: 600;
+  }
+  .ret p { color: #3d382f; font-size: 0.92rem; line-height: 1.65; }
+  .ret b { color: var(--ink); font-weight: 600; }
+
   /* ---------- Portfolio ---------- */
   .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .work {
@@ -254,7 +273,7 @@
   }
 
   @media (max-width: 860px) {
-    .pillars, .cards, .work-grid, .steps, .contact-grid { grid-template-columns: 1fr; }
+    .pillars, .cards, .work-grid, .steps, .contact-grid, .returning-grid { grid-template-columns: 1fr; }
     .nav-links a:not(.btn) { display: none; }
     header.hero { padding: 70px 0 60px; }
     section { padding: 64px 0; }
@@ -372,6 +391,28 @@
       </div>
     </div>
     <p class="pricing-note">Your price is set before we start and never changes. Founding-client rates while the portfolio grows — in exchange, your win becomes a featured case study.</p>
+
+    <div class="returning">
+      <div class="returning-head">
+        <div class="section-label">Returning Clients</div>
+        <h3>It gets better the second time.</h3>
+        <p>Finding a new client costs me a day of walking. You don't. That savings goes to you.</p>
+      </div>
+      <div class="returning-grid">
+        <div class="ret">
+          <div class="ret-label">Move up</div>
+          <p>Upgrade to a bigger package within 30 days and what you already paid comes off the price. A Vision Session becomes a <b>Blueprint for $150</b>, or a <b>Build for $300</b>.</p>
+        </div>
+        <div class="ret">
+          <div class="ret-label">Come back</div>
+          <p>Every engagement after your first runs at the returning rate: <b>Vision $175 · Blueprint $300 · Build $425</b>. Locked for good — no expiration, no fine print.</p>
+        </div>
+        <div class="ret">
+          <div class="ret-label">Send someone</div>
+          <p><b>$50 off your next engagement</b> for every client you send who books. No cap. Send four, your next Vision Session is free.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
